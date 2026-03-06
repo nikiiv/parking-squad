@@ -1,0 +1,56 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* Catppuccin Mocha base styles */
+@layer base {
+  body {
+    @apply bg-ctp-base text-ctp-text;
+  }
+
+  /* Form input styling for Catppuccin */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  textarea,
+  select {
+    @apply bg-ctp-surface0 border-ctp-surface2 text-ctp-text placeholder-ctp-overlay0
+           focus:border-ctp-mauve focus:ring-ctp-mauve/30 rounded-lg;
+  }
+
+  label {
+    @apply text-ctp-subtext1;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-ctp-mauve text-ctp-crust font-semibold px-4 py-2 rounded-lg
+           hover:bg-ctp-mauve/80 transition-colors duration-150
+           phx-submit-loading:opacity-75;
+  }
+
+  .btn-secondary {
+    @apply bg-ctp-surface1 text-ctp-text font-semibold px-4 py-2 rounded-lg
+           hover:bg-ctp-surface2 transition-colors duration-150;
+  }
+
+  .btn-danger {
+    @apply bg-ctp-red text-ctp-crust font-semibold px-4 py-2 rounded-lg
+           hover:bg-ctp-red/80 transition-colors duration-150;
+  }
+
+  .btn-success {
+    @apply bg-ctp-green text-ctp-crust font-semibold px-4 py-2 rounded-lg
+           hover:bg-ctp-green/80 transition-colors duration-150;
+  }
+
+  .card {
+    @apply bg-ctp-surface0 rounded-xl p-6 shadow-lg shadow-ctp-crust/20;
+  }
+
+  .link {
+    @apply text-ctp-mauve hover:text-ctp-lavender underline underline-offset-2
+           transition-colors duration-150;
+  }
+}

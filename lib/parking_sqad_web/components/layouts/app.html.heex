@@ -1,0 +1,46 @@
+<header class="bg-ctp-mantle border-b border-ctp-surface0">
+  <nav class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-14">
+      <div class="flex items-center gap-4">
+        <a href="/" class="flex items-center gap-2">
+          <span class="text-ctp-mauve font-bold text-lg">🅿️ Parking Squad</span>
+        </a>
+      </div>
+      <div class="flex items-center gap-4 text-sm">
+        <%= if @current_user do %>
+          <%= if @current_user.role == "admin" do %>
+            <a href="/admin/users" class="text-ctp-subtext1 hover:text-ctp-mauve transition-colors">
+              Manage Users
+            </a>
+            <a href="/admin/spots" class="text-ctp-subtext1 hover:text-ctp-mauve transition-colors">
+              Manage Spots
+            </a>
+          <% end %>
+          <span class="text-ctp-subtext0">
+            <%= @current_user.name %>
+          </span>
+          <.link
+            href={~p"/logout"}
+            method="delete"
+            class="text-ctp-subtext1 hover:text-ctp-red transition-colors"
+          >
+            Log out
+          </.link>
+        <% else %>
+          <a href="/login" class="text-ctp-subtext1 hover:text-ctp-mauve transition-colors">
+            Log in
+          </a>
+          <a href="/register" class="btn-primary text-sm !py-1.5 !px-3">
+            Register
+          </a>
+        <% end %>
+      </div>
+    </div>
+  </nav>
+</header>
+<main class="px-4 py-10 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-3xl">
+    <.flash_group flash={@flash} />
+    <%= @inner_content %>
+  </div>
+</main>
