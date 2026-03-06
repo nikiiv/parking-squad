@@ -82,9 +82,4 @@ config :phoenix_live_view,
   # Enable helpful, but potentially expensive runtime checks
   enable_expensive_runtime_checks: true
 
-# Use Resend adapter for sending real emails in development
-config :parking_sqad, ParkingSqad.Mailer,
-  adapter: Swoosh.Adapters.Resend,
-  api_key: "re_86hzmJo7_3x3RRC8JYhy1YEkEwzgf7Vma"
-
 config :swoosh, api_client: Swoosh.ApiClient.Finch, finch_name: ParkingSqad.Finch

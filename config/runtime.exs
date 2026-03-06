@@ -96,13 +96,16 @@ if config_env() == :prod do
   #       force_ssl: [hsts: true]
   #
   # Check `Plug.SSL` for all available options in `force_ssl`.
+end
 
-  # Configuring the mailer to use Resend
-  config :parking_sqad, ParkingSqad.Mailer,
-    adapter: Swoosh.Adapters.Resend,
-    api_key:
-      System.get_env("RESEND_API_KEY") ||
-        raise("environment variable RESEND_API_KEY is missing.")
+# Configuring the mailer to use Resend (dev and prod)
+# Set RESEND_API_KEY environment variable
+if config_env() in [:dev, :prod] do
+  if resend_api_key = System.get_env("RESEND_API_KEY") do
+    config :parking_sqad, ParkingSqad.Mailer,
+      adapter: Swoosh.Adapters.Resend,
+      api_key: resend_api_key
 
-  config :swoosh, api_client: Swoosh.ApiClient.Finch, finch_name: ParkingSqad.Finch
+    config :swoosh, api_client: Swoosh.ApiClient.Finch, finch_name: ParkingSqad.Finch
+  end
 end
